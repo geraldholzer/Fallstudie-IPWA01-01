@@ -1,0 +1,37 @@
+
+    {  "datei":[
+        {
+            "Land": "China",
+            "Unternehmen": "Alibaba",
+            "Ausstoß":"5350"
+        },
+        {
+            "Land": "Thailand",
+            "Unternehmen": "Fang",
+            "Ausstoß":"1308"
+        },
+
+        {
+            "Land": "Südkorea",
+            "Unternehmen": "Samsung",
+            "Ausstoß":"1807"
+        },
+        {
+            "Land": "Südkorea",
+            "Unternehmen": "Hyundai",
+            "Ausstoß":"6807"
+        },
+        {
+            "Land": "Japan",
+            "Unternehmen": "Toshiba",
+            "Ausstoß":"3420"
+        },  
+              {
+            "Land": "Japan",
+            "Unternehmen": "Wacom",
+            "Ausstoß":"11307"
+        }
+    ]
+
+
+}

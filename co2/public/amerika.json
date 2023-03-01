@@ -1,0 +1,38 @@
+
+    {  "datei":[
+        {
+            "Land": "USA",
+            "Unternehmen": "Chrysler",
+            "Ausstoß":"5234"
+        },
+        {
+            "Land": "Kanada",
+            "Unternehmen": "NanoOne",
+            "Ausstoß":"3304"
+        },
+
+        {
+            "Land": "Mexiko",
+            "Unternehmen": "SantaBrava",
+            "Ausstoß":"1963"
+        },
+        {
+            "Land": "USA",
+            "Unternehmen": "Lockhead-Martin",
+            "Ausstoß":"7233"
+        },
+        {
+            "Land": "Kanada",
+            "Unternehmen": "Enbridge",
+            "Ausstoß":"8304"
+        },
+
+        {
+            "Land": "Mexiko",
+            "Unternehmen": "Pemex",
+            "Ausstoß":"4973"
+        }
+    ]
+
+
+}

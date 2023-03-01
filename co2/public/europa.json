@@ -1,0 +1,38 @@
+
+    {  "datei":[
+        {
+            "Land": "Russland",
+            "Unternehmen": "Gazprom",
+            "Ausstoß":"15000"
+        },
+        {
+            "Land": "Österreich",
+            "Unternehmen": "OMV",
+            "Ausstoß":"300"
+        },
+
+        {
+            "Land": "Deutschland",
+            "Unternehmen": "BASF",
+            "Ausstoß":"3120"
+        },
+        {
+            "Land": "Spanien",
+            "Unternehmen": "San-Miguel",
+            "Ausstoß":"1400"
+        },
+        {
+            "Land": "Deutschland",
+            "Unternehmen": "Volkswagen",
+            "Ausstoß":"6900"
+        },
+        {
+            "Land": "Spanien",
+            "Unternehmen": "Iberdrola",
+            "Ausstoß":"2504"
+        }
+
+    ]
+
+
+}

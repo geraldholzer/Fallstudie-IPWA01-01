@@ -16,11 +16,15 @@ props: {titel: String,
 
 .cheadbutton{
 color:white;
-background-color:rgb(104, 22, 22);
 border-color:grey;
 border-radius: 0.2rem;
 border-style:groove;
-width:12rem;
+width:14rem;
 height:2.7em;
+background-color:rgb(22, 75, 40);
+}
+.cheadbutton:hover{
+    background-color:rgb(124, 7, 7);   
+
 }
 </style>

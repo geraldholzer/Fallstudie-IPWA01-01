@@ -1,18 +1,23 @@
 <template>
+  <!-- Variable Überschrift mit Logo -->
+   <h1 class="cheadline"><img src="favicon.ico" height=30>{{titel}} </h1>
+   
+   <!-- Tabelle -->
 <table border="1" id="datatable"> 
-      <thead >
+      <!-- Tabellenkopf mit Überschriften -->
+  <thead >
         <tr>
           <th id="tablehead" > Land    
             <select id="selectländer" @click="this.selectfunction">
               <option value="clearfilter">kein Filter</option>
-              <option  :key= element.Land v-for="element in daten"  :value=element.Land>{{ element.Land }} </option>
+              <option  :key= element.Land v-for="element in uniqueLand" :value=element>{{ element }} </option>
           </select>
           <button id="sortbutton" @click="this.sortland">sort</button></th>
 
           <th id="tablehead" >Unternehmen
             <select id="selectunternehmen" @click="this.selectunternehmenfunction">
               <option value="clearfilter">kein Filter</option>
-              <option  :key= element.Land v-for="element in daten"  :value=element.Unternehmen>{{ element.Unternehmen }} </option>
+              <option  :key= element.Ausstoß v-for="element in daten"  :value=element.Unternehmen>{{ element.Unternehmen }} </option>
           </select>
            <button id="sortbutton" @click="this.sortunternehmen">sort</button>
           </th>
@@ -22,7 +27,8 @@
           </th>
         </tr>
       </thead>
-      <tbody :key="datensatz.Land" v-for="datensatz in daten">
+
+      <tbody :key="datensatz.Ausstoß" v-for="datensatz in daten">
         <tr >
           <td id="tabledata">{{datensatz.Land}}</td>
           <td id="tabledata">{{datensatz.Unternehmen}}</td>
@@ -53,32 +59,14 @@
 
 export default {
 name: 'CoTable',
+props:{
+quelle:String,
+titel:String
+},
 data(){
 
- return{ daten :[],
-
-    //   {
-    //   Land: 'aZsterreich',
-    //   Unternehmen: "OMV",
-    //   Ausstoß:800
-    //   },
-    //   {
-    //   Land: "bDeutschland",
-    //   Unternehmen: "BASF",
-    //   Ausstoß:9100
-    //   },    
-    //  {
-    //   Land: "cRussland",
-    //   Unternehmen: "Gazprom",
-    //   Ausstoß:1200
-    //   },
-    //   {
-    //   Land: "aSchweiz",
-    //   Unternehmen: "Nestle",
-    //   Ausstoß:70
-    //   }
-  
-        // ],
+ return{ 
+        daten :[],
         ascending:false,
         ascendingland:false,
         ascendingunternehmen:false,    
@@ -97,21 +85,35 @@ data(){
                 selectedunternehmenvalue(){this.filterunternehmenfunction();}
             },
          
+
     mounted()
+    // Daten aus JSON Quelle laden
     {
-fetch('data.json')
+fetch(this.quelle)
         .then((response)=>{return response.json()})
         .then((data)=>{
           this.daten=data.datei;
-          console.log(this.daten)
         });
 
     },
 
+computed: {
+  // Methode um Doppelte Werte im Filter zu vermeiden
+    uniqueLand: function() {
+      var filtered_array = [];
+      for(var i =0; i < this.daten.length; i++) {
+        if(filtered_array.indexOf(this.daten[i].Land) === -1) {
+          filtered_array.push(this.daten[i].Land)
+        }
+      }
+    return filtered_array;
+    }
+  },
        
       
 
   methods:{
+
         // nach Ausstoß sortieren
         sortausstoß(){
       if(this.ascending==true){ 
@@ -126,25 +128,28 @@ fetch('data.json')
 },
     // nach Länder sortieren
 sortland(){ 
+
       if(this.ascendingland==true){ 
          this.ascendingland=false;
-          this.daten=this.daten.sort(function(a,b){  let x = a.Land.toLowerCase();
-                let y = b.Land.toLowerCase();
+          this.daten.sort(function(a,b){  let x = a.Land.toLowerCase();
+                let y = b.Land.toLowerCase();            
                 if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;});
-         
+                if (x > y) {return 1;}            
+                return 0; }
+                );          
+
        }
 
       else if(this.ascendingland==false){  
         this.ascendingland=true;
         this.daten=this.daten.sort(function(a,b){ 
         let x = a.Land.toLowerCase();
-        let y = b.Land.toLowerCase();
+        let y = b.Land.toLowerCase();      
                 if (x > y) {return -1;}
                 if (x < y) {return 1;}
-                return 0;});}
-    
+                return 0;}
+                );
+        }
        },
        // nach Unternehmen sortieren
        sortunternehmen(){
@@ -168,17 +173,20 @@ sortland(){
                 return 0;});}
     
               },
-                               
+
+              // Funktion zur übergabe der Filterauswahl in der Länderspalte             
                selectfunction(){
                 let select= document.getElementById('selectländer');
                 this.selectedvalue=select.options[select.selectedIndex].value    
                
                },
+                  // Funktion zur übergabe der Filterauswahl in der Unternehmensspalte  
                selectunternehmenfunction(){
                 let select= document.getElementById('selectunternehmen');
                 this.selectedunternehmenvalue=select.options[select.selectedIndex].value    
                
                },
+              //  Filterfunction für Länderspalte
                filterfunction(){
                  
                     let sel=this.selectedvalue
@@ -190,7 +198,8 @@ sortland(){
                     this.daten=this.datenoriginal
                 }             
                },
-               
+              //  Filterfunction für Unternehmensspalte
+
                filterunternehmenfunction(){
                  let sel=this.selectedunternehmenvalue
               if(sel!=""&&sel!="clearfilter"){ 
@@ -223,6 +232,9 @@ sortland(){
   border-width:0.1rem;
   width:80vw;
 }
+.cheadline{
+  font-family:cursive;
+}
 #tablehead{
   /* border-style:solid;
   border-color:black; */
@@ -234,24 +246,7 @@ sortland(){
 text-align:center;
 font-style:italic;
 }
-#tablehead #tooltip {
-  visibility: hidden;
-  width: 3rem;
-  background-color: rgb(225, 216, 216);
-  color: #292727;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  margin-left:6.5rem;
-  font-size:0.4rem;
 
-}
-
-#tablehead:hover #tooltip {
-  visibility: visible;
-}
 
 #sortbutton{
 width:2.5rem;
@@ -262,4 +257,5 @@ color:white;
 border-color:white;
 border-width:0.07rem;
 }
+
 </style>
