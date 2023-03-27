@@ -18,7 +18,7 @@
             <select id="selectunternehmen" @click="this.selectunternehmenfunction">
               <option value="clearfilter">kein Filter</option>
               <option  :key= element.Ausstoß v-for="element in daten"  :value=element.Unternehmen>{{ element.Unternehmen }} </option>
-          </select>
+          </select> 
            <button id="sortbutton" @click="this.sortunternehmen">sort</button>
           </th>
 
@@ -114,7 +114,7 @@ computed: {
 
   methods:{
 
-        // nach Ausstoß sortieren
+   // nach Ausstoß sortieren
         sortausstoß(){
       if(this.ascending==true){ 
           this.daten=this.daten.sort(function(a,b){return a.Ausstoß-b.Ausstoß;});

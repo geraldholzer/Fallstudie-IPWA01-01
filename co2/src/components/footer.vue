@@ -24,7 +24,7 @@ footer{
     font-size:0.75rem;
     padding-bottom:0.7rem;
     background-color:rgb(22, 75, 33);
-    width:100rem;
+    width:100vw;
     height:0.05rem;
     text-align:left;
 }

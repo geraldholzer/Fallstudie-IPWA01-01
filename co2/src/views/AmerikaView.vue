@@ -167,6 +167,7 @@ let navigator=window.navigator
 }
 
 .ctext{
+  font-size:20px;
   text-align:justify;
   margin-right: 5rem;
   padding-top:1rem;
@@ -190,12 +191,13 @@ let navigator=window.navigator
   font-size:0.7rem;
 }
 .ctext{
+  font-size:12px;
   text-align:justify;
   margin-right: 2rem;
   padding-top:1rem;
 
 }
-.sprung {visibility: hidden; height: 0px !important; position: absolute; margin-top: 3.3rem;}
+.sprung {visibility: hidden; height: 0px !important; position: absolute; margin-top: 4.5rem;}
 .sprung2 {visibility: hidden; height: 0px !important; position: absolute; margin-top: 62rem;}
 }
 
